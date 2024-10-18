@@ -142,7 +142,17 @@ while running:
             case pg.KEYDOWN:
                 match event.key:
                     case K_r:
-                        pass
+                        #Победа на false
+                        win = False
+                        #Клетки становятся пустыми
+                        for cell in cells:
+                            cell.txt = '-'
+                        #Списки также становятся пустыми.
+                        field_s = field
+                        field_t = field
+                        field_diag1 = field[0]
+                        field_diag2 = field[0]
+
     
     #Проверка условий на победу
     if win != True:
