@@ -93,6 +93,8 @@ info = GameSprite('cell.png',1,1,90,500,'R - Начать сначала.','CYAN
 #Тексты для побед
 p1vic = my_font.render('Победил игрок 1!',True,'BLUE')
 p2vic = my_font.render('Победил игрок 2!',True,'ORANGE')
+#Текст для ничьи
+null = my_font.render('Ничья!',True,'GREEN')
 
 #Списки с объектами для рендера/проверок
 cells = [c00,c01,c02,c10,c11,c12,c20,c21,c22]
@@ -152,6 +154,17 @@ while running:
         elif field_s[0] == p2_w or field_s[1] == p2_w or field_s[2] == p2_w or field_t[0] == p2_w or field_t[1] == p2_w or field_t[2] == p2_w or field_diag1 == p2_w or field_diag2 == p2_w:
             window.blit(p2vic,(125,0))
             win = True
+        #Если ни то ни другое, проверка клеток на заполнение
+        else:
+            i = 0
+            for cell in cells:
+                if cell.txt != '-':
+                    i += 1
+            match i:
+            #Если все 9 - ничья
+                case 9:
+                    window.blit(null,(250,0))
+                    win = True
 
     window.fill('WHITE')
         
