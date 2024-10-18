@@ -49,16 +49,10 @@ field = [['-','-','-'],
          ['-','-','-']
         ]
 
-#Случаи для побед
-p1_w = ['X','X','X']
-p2_w = ['0','0','0']
-
 #pb - игроки, если true - ходит крестик, если false - нолик.
 pb = True
 #running - идет игра или нет.
 running  = True
-#Проверка победы
-#win = False
 
 #Транспонирование матрицы (для удобства работы со столбцами)
 def transponent(a):
@@ -85,11 +79,6 @@ c22 = GameSprite('cell.png',100,100,400,400,field[2][2],(0,0,0))
 p1 = GameSprite('cell.png',1,1,0,0,'P1 X','BLUE')
 p2 = GameSprite('cell.png',1,1,440,0,'P2 0','BLACK')
 info = GameSprite('cell.png',1,1,90,500,'R - Начать сначала.','CYAN')
-
-#Случаи побед
-p1vic = my_font.render('Победил игрок 1!',True,'BLUE')
-p2vic = my_font.render('Победил игрок 2!',True,'ORANGE')
-null = my_font.render('Ничья!',True,'GREEN')
 
 #Списки с объектами для рендера/проверок
 cells = [c00,c01,c02,c10,c11,c12,c20,c21,c22]
@@ -137,8 +126,7 @@ while running:
                 match event.key:
                     case K_r:
                         pass
-    #Если не победа - проверять условия
-    #if win != True:
+
     window.fill('WHITE')
         
     #Рендер клеток и текста        
