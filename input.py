@@ -53,10 +53,16 @@ field = [['-','-','-'],
          ['-','-','-']
         ]
 
+#Списки для сравнения
+p1_w = ['X','X','X']
+p2_w = ['0','0','0']
+
 #pb - игроки, если true - ходит крестик, если false - нолик.
 pb = True
 #running - идет игра или нет.
 running  = True
+#Проверка победы
+win = False
 
 #Транспонирование матрицы (для удобства работы со столбцами)
 def transponent(a):
@@ -83,6 +89,10 @@ c22 = GameSprite('cell.png',100,100,400,400,field[2][2],(0,0,0))
 p1 = GameSprite('cell.png',1,1,0,0,'P1 X','BLUE')
 p2 = GameSprite('cell.png',1,1,440,0,'P2 0','BLACK')
 info = GameSprite('cell.png',1,1,90,500,'R - Начать сначала.','CYAN')
+
+#Тексты для побед
+p1vic = my_font.render('Победил игрок 1!',True,'BLUE')
+p2vic = my_font.render('Победил игрок 2!',True,'ORANGE')
 
 #Списки с объектами для рендера/проверок
 cells = [c00,c01,c02,c10,c11,c12,c20,c21,c22]
@@ -125,11 +135,23 @@ while running:
 
                         field_diag1 = [c00.txt,c11.txt,c22.txt]
                         field_diag2 = [c02.txt,c11.txt,c20.txt]
+    
             #Рестарт          
             case pg.KEYDOWN:
                 match event.key:
                     case K_r:
                         pass
+    
+    #Проверка условий на победу
+    if win != True:
+        window.fill('WHITE')
+        #Питон скотина, не хочет по нормальному условия читать, только так... :/
+        if field_s[0] == p1_w or field_s[1] == p1_w or field_s[2] == p1_w or field_t[0] == p1_w or field_t[1] == p1_w or field_t[2] == p1_w or field_diag1 == p1_w or field_diag2 == p1_w:
+            window.blit(p1vic,(125,0))
+            win = True
+        elif field_s[0] == p2_w or field_s[1] == p2_w or field_s[2] == p2_w or field_t[0] == p2_w or field_t[1] == p2_w or field_t[2] == p2_w or field_diag1 == p2_w or field_diag2 == p2_w:
+            window.blit(p2vic,(125,0))
+            win = True
 
     window.fill('WHITE')
         
