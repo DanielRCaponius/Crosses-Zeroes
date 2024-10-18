@@ -176,8 +176,6 @@ while running:
                     window.blit(null,(250,0))
                     win = True
 
-    window.fill('WHITE')
-        
     #Рендер клеток и текста        
     for cell in cells:
         cell.reset()
